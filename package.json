@@ -13,7 +13,9 @@
   "dependencies": {
     "commander": "2.0.x",
     "git"      : "",
-    "npm-collection-npm-tools": ""
+    "npm-collection-npm-tools": "",
+    "npm-keyword": "",
+    "rpm-builder": ""
   },
   "engines": {
     "node": "0.10.x"
