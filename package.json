@@ -1,7 +1,7 @@
 {
   "author": "Tomas Hrcka <thrcka@redhat.com>",
   "name": "gabelstaplerfahrer",
-  "description": "Deployment tool for node.js",
+  "description": "Generate rpm packages from npmjs registry",
   "version": "0.0.1",
   "license" : "MIT",
   "homepage": "https://github.com/humaton/gabelstaplerfahrer",
@@ -10,9 +10,10 @@
     "type": "git",
     "url": "git://github.com/humaton/gabelstaplerfahrer.git"
   },
-  "dependencies": {  
+  "dependencies": {
     "commander": "2.0.x",
-    "git"      : ""
+    "git"      : "",
+    "npm-collection-npm-tools": ""
   },
   "engines": {
     "node": "0.10.x"
