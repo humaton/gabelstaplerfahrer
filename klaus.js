@@ -11,6 +11,12 @@ var config = require('./lib/config');
 var package_json = require('package-json');
 var npmKeyword = require('npm-keyword');
 
+function get_package_json(package_name) {
+  package_json(package_name, 'latest', function (err, json) {
+      //console.log(json)
+      return json
+    });
+}
 
 program
   .version('0.0.1')
@@ -22,10 +28,7 @@ program
   .parse(process.argv);
 
 if (program.check_deps){
-    package_json(program.check_deps, 'latest', function (err, json) {
-      console.log(json);
-      //=> { name: 'pageres', ... }
-    });
+   get_package_json(program.check_deps);
 }
 
 if (program.search) {
@@ -41,8 +44,9 @@ if (program.build) {
     rpm.BuildSpec(rpm.GetPackageJson(project_dir));
 }
 
-if (program.init) {
-  console.log('  - init');
-  config.CheckConfigDirectory(project_dir);
-  git.CheckRepository(project_dir);
+if (program.download){
+    package_json(program.check_deps, 'latest', function (err, json) {
+      console.log(json);
+      //=> { name: 'pageres', ... }
+    });
 }
