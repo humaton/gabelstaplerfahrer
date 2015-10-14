@@ -16,7 +16,10 @@
     "npm-collection-npm-tools": "",
     "npm-keyword": "",
     "rpm-builder": "",
-    "package-json": ""
+    "package-json": "",
+    "git-ls-remote":"",
+    "request":"",
+    "node-sync":""
   },
   "engines": {
     "node": "0.10.x"
