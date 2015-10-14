@@ -15,7 +15,8 @@
     "git"      : "",
     "npm-collection-npm-tools": "",
     "npm-keyword": "",
-    "rpm-builder": ""
+    "rpm-builder": "",
+    "package-json": ""
   },
   "engines": {
     "node": "0.10.x"
