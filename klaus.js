@@ -10,8 +10,8 @@ npmKeyword = require('npm-keyword')
 pkgdb = require('./pkgdb')
 util = require('util')
 gitlsremote = require('git-ls-remote')
-Sync = require('node-sync');
-request = require('request');
+colors = require('colors')
+exec = require('child_process').exec
 
 rePattern = new RegExp(/^^~=/);
 
@@ -29,17 +29,19 @@ program
 
 if program.check_deps
   packageJson program.check_deps, 'latest', (err, json) ->
-    #console.log(execSync("git ls-remote http://pkgs.fedoraproject.org/cgit/nodejs.git/"));
+    #console.log(exec("git ls-remote http://pkgs.fedoraproject.org/cgit/nodejs.git/"));
     #execSync("git ls-remote http://pkgs.fedoraproject.org/cgit/nodejs.git/", puts);
     #koji -q latest-build %s %s" % (tag, self.pkg_name)
     #gitlsremote.head('http://pkgs.fedoraproject.org/cgit/nodejs-' + attributename + '.git')
     deps = [] 
     for attributename of json['dependencies']
-      #deps.push {name: attributename, version: json['dependencies'][attributename], distgitbranches: getDistGitBranches attributename }
-      console.log 'package: ' + attributename + ' version: ' + json['dependencies'][attributename] + ' is in fedora:' + pkgdb attributename
-    #console.log deps  
-    return
-
+      deps.push {name: attributename, version: json['dependencies'][attributename], distgitbranches: getDistGitBranches attributename }
+      console.log 'package: ' + attributename.red + ' version: ' + json['dependencies'][attributename].green + ' is in fedora:' + pkgdb attributename, json
+      
+    #console.log deps
+    deps.forEach (dep) ->
+      console.log dep
+      
 if program.search
   npmKeyword program.search, (err, packages) ->
     console.log packages
@@ -49,7 +51,8 @@ if program.build
   #rpm.BuildSpec rpm.GetPackageJson(project_dir)
   package_name = 'gyp'
   console.log pkgdb package_name
+  
 if program.download
-  package_json program.download, 'latest', (err, json) ->
+  packageJson program.download, 'latest', (err, json) ->
     console.log json
     return

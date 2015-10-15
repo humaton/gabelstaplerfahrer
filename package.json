@@ -18,8 +18,8 @@
     "rpm-builder": "",
     "package-json": "",
     "git-ls-remote":"",
-    "request":"",
-    "node-sync":""
+    "sync-request":"",
+   
   },
   "engines": {
     "node": "0.10.x"
