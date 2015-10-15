@@ -19,6 +19,7 @@
     "package-json": "",
     "git-ls-remote":"",
     "sync-request":"",
+    "shelljs":""
    
   },
   "engines": {
