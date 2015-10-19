@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "license" : "MIT",
   "homepage": "https://github.com/humaton/gabelstaplerfahrer",
-  "bin" : { "klaus" : "./klaus.js" },
+  "bin" : { "klaus" : "./klaus.coffee" },
   "repository": {
     "type": "git",
     "url": "git://github.com/humaton/gabelstaplerfahrer.git"
@@ -19,7 +19,8 @@
     "package-json": "",
     "git-ls-remote":"",
     "sync-request":"",
-    "shelljs":""
+    "shelljs":"",
+    "colors":""
    
   },
   "engines": {
