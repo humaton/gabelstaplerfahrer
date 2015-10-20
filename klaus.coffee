@@ -3,22 +3,30 @@
 #
 ###
 
+pkgdb = require('./pkgdb')
+rpm = require('./rpm')
+
 program = require('commander')
 path = require('path')
 packageJson = require('package-json')
 npmKeyword = require('npm-keyword')
-pkgdb = require('./pkgdb')
 util = require('util')
 gitlsremote = require('git-ls-remote')
 colors = require('colors')
 exec = require('child_process').exec
 shell = require('shelljs')
+readline = require('readline')
+
 rePattern = new RegExp(/^^~=/);
 
 
 createPackageData = (package_name) ->
   return true
-  
+
+rl = readline.createInterface(
+  input: process.stdin
+  output: process.stdout)
+
 program
   .version('0.0.1')
   .option('-c, --check_deps [package name]', 'Check dependencies for package')
@@ -36,14 +44,13 @@ if program.check_deps
     
     deps.forEach (dep) ->
       dep['distgitbranches'].forEach (tag) ->
-        #result = exec('koji -q latest-build '+tag+' '+dep.name)
-	# Run external tool synchronously
+        # Run external tool synchronously
 	#if (exec 'koji -q latest-build '+tag+' '+dep.name).code != 0
-	#  echo 'Error: Git commit failed'
-	#  exit 1
-        #console.log result
       console.log 'package: ' + dep.name.red + ' version: ' + dep.version.green + ' is in fedora: ' + dep.distgitbranches
+      #console.log 'Generating rpm' if dep.distgitbranches[0] == 'NONE'
+      #rpm dep.name if dep.distgitbranches[0] == 'NONE'
       
+
 if program.search
   npmKeyword program.search, (err, packages) ->
     console.log packages
