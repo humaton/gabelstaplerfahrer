@@ -4,8 +4,6 @@
 ###
 
 pkgdb = require('./pkgdb')
-rpm = require('./rpm')
-
 program = require('commander')
 path = require('path')
 packageJson = require('package-json')
